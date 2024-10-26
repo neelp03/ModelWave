@@ -42,6 +42,7 @@
 	"dependencies": {
 		"chart.js": "^4.4.5",
 		"drizzle-orm": "^0.33.0",
-		"postgres": "^3.4.4"
+		"postgres": "^3.4.4",
+		"svelte-chartjs": "^3.1.5"
 	}
 }

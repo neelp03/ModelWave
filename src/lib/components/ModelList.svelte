@@ -1,12 +1,8 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  type Model = {
-    name: string;
-    description: string;
-    createdAt: string;
-  };
+  import { modelStore } from '$lib/stores/modelStore';
 
-  let models: Model[] = [];
+  let models: { id: number; name: string; description: string }[] = [];
 
   onMount(async () => {
     const res = await fetch('/api/models');
@@ -15,15 +11,13 @@
 </script>
 
 <div class="model-list">
-  <h2 class="text-xl font-bold mb-4">Uploaded Models</h2>
-  {#if models.length === 0}
-    <p>No models found.</p>
-  {/if}
+  <h2>Uploaded Models</h2>
   {#each models as model}
-    <div class="model-item mb-4 p-4 border rounded">
-      <h3 class="font-bold">{model.name}</h3>
+    <div class="model-item">
+      <a href={`/models/${model.id}`}>
+        <h3>{model.name}</h3>
+      </a>
       <p>{model.description}</p>
-      <small>Created at: {new Date(model.createdAt).toLocaleString()}</small>
     </div>
   {/each}
 </div>
